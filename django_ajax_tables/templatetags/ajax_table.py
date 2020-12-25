@@ -18,6 +18,11 @@ def ajax_table(context, divname, url, *args, template='django_ajax_tables/ajax_w
     context.push(ajax_tableurl=tableurl, ajax_divname=divname)
 
     try:
-        return template.render(context.flatten())
+        new_context = context.flatten()
+    except ValueError:
+        new_context = context.__copy__()
+        
+    try:
+        return template.render(new_context)
     finally:
         context.pop()
