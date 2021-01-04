@@ -1,7 +1,7 @@
 <div id="{{ ajax_divname }}"></div>
 
-<script type='text/javascript'>
 
+<script type='text/javascript'{% if request and request.csp_nonce %} nonce="{{ request.csp_nonce }}"{% endif %}>
     function _replace_links_{{ ajax_divname }}(url, elements) {
         for (var x = 0; x < elements.length; x++) {
             var links = elements[x].getElementsByTagName('A');
